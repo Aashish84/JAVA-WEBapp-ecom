@@ -6,7 +6,8 @@
 <%@ include file="/admin/inc/header.jsp" %>
 	<div class = "col-6">
 		<h2>add new product</h2>
-		<form action="/ecom/product/ctrl" method="post" enctype="multipart/form-data"> 
+		<form action="/ecom/product/ctrl" method="post" enctype="multipart/form-data">
+		 
 			<div class="form-group">
 				<label for="title" >product name</label>
 				<input type="text" id="title" class="form-control" name="productname" placeholder="enter product name" />
@@ -43,7 +44,9 @@
 					<input class="form-control" type="number"  name="inventory" />
 				</label>
 			</div>
-			<input type="file" name="file"/>
+			<div class="form-group">
+				<input type="file" name="file"/>
+			</div>
 			<input type="submit" value="insert" />
 		</form>
 	</div>
