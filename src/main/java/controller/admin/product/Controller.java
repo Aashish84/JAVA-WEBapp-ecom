@@ -22,18 +22,8 @@ public class Controller extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Part filepart = request.getPart("file");
 		String fn = filepart.getSubmittedFileName();
-		
-		String UPLOAD_DIR = "public/uploads";
-		String applicationPath = request.getServletContext().getRealPath("");
-		String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
-		
-		File fileSavePath = new File(uploadFilePath);
-		if(!fileSavePath.exists()) {
-			response.getWriter().print("no_file_directory");
-			return;
-		}
-		
-		filepart.write(uploadFilePath+File.separator+fn);
+		filepart.write("/public/uploads/"+fn);
+		//filepart.write("d:\\"+fn);//file uploaded by this line
 		response.getWriter().print("sucessful");
 	}
 }
