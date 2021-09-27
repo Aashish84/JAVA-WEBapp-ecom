@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2021 at 08:31 AM
+-- Generation Time: Sep 27, 2021 at 06:48 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -40,8 +40,32 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'new', 1, '2021-09-05 21:14:50', '2021-09-12 17:11:38'),
-(3, 'newxjava', 0, '2021-09-05 21:15:36', '2021-09-10 07:52:34');
+(2, 'category-1', 1, '2021-09-05 21:14:50', '2021-09-25 12:25:16'),
+(8, 'category-2', 1, '2021-09-20 13:25:57', '2021-09-27 07:59:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `discount` int(11) NOT NULL,
+  `inventory` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `category_id`, `status`, `discount`, `inventory`, `created_at`, `updated_at`) VALUES
+(1, 'one', 8, 1, 0, 2, '2021-09-24 10:11:46', '2021-09-24 10:11:46');
 
 -- --------------------------------------------------------
 
@@ -98,6 +122,13 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_category` (`category_id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -117,7 +148,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -128,6 +165,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 
 --
 -- Constraints for table `roles`
