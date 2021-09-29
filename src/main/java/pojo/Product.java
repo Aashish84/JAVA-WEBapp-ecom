@@ -6,17 +6,30 @@ public class Product {
 	private int category_id;
 	private boolean status;
 	private int discount;
-	private int quantity_left;
+	private int inventory;
+	private String image;
 	
 	public Product() {}
-	
-	public Product(int id, String name, int category_id, boolean status, int discount, int quantity_left) {
+
+	public Product(String name, int category_id, boolean status, int discount, int inventory, String image) {
+		super();
+		this.name = name;
+		this.category_id = category_id;
+		this.status = status;
+		this.discount = discount;
+		this.inventory = inventory;
+		this.image = image;
+	}
+
+	public Product(int id, String name, int category_id, boolean status, int discount, int inventory, String image) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.category_id = category_id;
 		this.status = status;
 		this.discount = discount;
-		this.quantity_left = quantity_left;
+		this.inventory = inventory;
+		this.image = image;
 	}
 
 	public int getId() {
@@ -59,14 +72,19 @@ public class Product {
 		this.discount = discount;
 	}
 
-	public int getQuantity_left() {
-		return quantity_left;
+	public int getInventory() {
+		return inventory;
 	}
 
-	public void setQuantity_left(int quantity_left) {
-		this.quantity_left = quantity_left;
+	public void setInventory(int inventory) {
+		this.inventory = inventory;
 	}
-	
-	
-	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 }

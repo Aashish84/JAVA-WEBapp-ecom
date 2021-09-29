@@ -94,13 +94,22 @@ public class Controller extends HttpServlet{
 		}else {
 			id  = Integer.parseInt(i.substring(1));
 		}
+		
 		DBDisplay ob = new DBDisplay("category");
 		Category c = ob.displayOneCategory(id);
-		DBDelete obd = new DBDelete(c);
-		if (obd.deleteReport()) {
-			response.sendRedirect("/ecom/category/view-post");
+		
+		//searching if product have category id before delete
+		DBDisplay obsearch = new DBDisplay("product","where category_id = "+c.getId());
+		if(obsearch.isEmpty()) {
+			DBDelete obd = new DBDelete(c);
+			if (obd.deleteReport()) {
+				response.sendRedirect("/ecom/category/view-post");
+			}else {
+				out.print("deleteion error");
+			}
 		}else {
-			out.print("deleteion error");
+			out.println("category has product ");
+			response.sendRedirect("/ecom/category/view-post");
 		}
 	}
 }

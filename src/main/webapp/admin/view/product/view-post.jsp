@@ -19,6 +19,7 @@
 					<th class="p-1">status</th>
 					<th class="p-1">discount</th>
 					<th class="p-1">remaningQty</th>
+					<th class="p-1">image</th>
 					<th colspan="2" class="p-1">action</th>
 				</tr>
 				<% 
@@ -46,9 +47,20 @@
 							%>	
 						</td>
 						<td><%=p.getDiscount() %></td>
-						<td><%=p.getQuantity_left() %></td>	
-						<td>update</td>
-						<td>delete</td>
+						<td><%=p.getInventory() %></td>
+						<td><a class="btn btn-primary" href="/ecom/product/file/<%=p.getImage()%>" target="_blank">view image</a></td>	
+						<td>
+							<form action="/ecom/product/ctrl/<%=p.getId() %>/" method="post">
+								<input type="hidden" name="_method" value="PUT"/>
+								<input type="submit" value="update" class="btn btn-warning"/>
+							</form>	
+						</td>
+						<td>
+							<form action="/ecom/product/ctrl/<%=p.getId()%>/" method="post" >
+								<input type="hidden" name="_method" value="DELETE"/>
+								<input type="submit" value="delete" onclick="javascript:return confirm('are you sure?');" class="btn btn-danger"/>
+							</form>
+						</td>
 					</tr>
 				<%
 					}

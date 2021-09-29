@@ -4,6 +4,7 @@ package databaseservice.crud;
 import java.sql.*;
 import databaseservice.DBConnection;
 import pojo.Category;
+import pojo.Product;
 
 public class DBAddpost {
 	int i = 0;
@@ -22,12 +23,28 @@ public class DBAddpost {
 			e.printStackTrace();
 		}
 	}
+	public DBAddpost(Product p) {
+		String query = "insert into product (name,category_id,status,discount,inventory,image,created_at,updated_at) values(?,?,?,?,?,?,?,?)";
+		DBConnection ob = new DBConnection();
+		Connection con = ob.getCon();
+		try {
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1,p.getName());
+			pstmt.setInt(2, p.getCategory_id());
+			pstmt.setBoolean(3, p.isStatus());
+			pstmt.setInt(4, p.getDiscount());
+			pstmt.setInt(5, p.getInventory());
+			pstmt.setString(6, p.getImage());
+			pstmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+			pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
+			i = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public boolean addReport() {
-		if(i!=0) {
-			return true;
-		}
-		return false;
+		return i!=0;
 	}
 	
 }

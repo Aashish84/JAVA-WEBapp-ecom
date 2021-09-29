@@ -31,6 +31,23 @@ public class DBDisplay {
 		this.table = table;
 	}
 	
+	public boolean isEmpty() {
+		ResultSet rs = null;		
+		DBConnection ob = new DBConnection();
+		Connection con = ob.getCon();
+		try {
+			PreparedStatement pstmt = con.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
 	private ResultSet displayAll() {
 		ResultSet rs = null;		
 		DBConnection ob = new DBConnection();
@@ -96,8 +113,9 @@ public class DBDisplay {
 				int cid = rs.getInt(3);
 				boolean status = rs.getBoolean(4);
 				int discount = rs.getInt(5);
-				int qty = rs.getInt(6);
-				Product p = new Product(pid, name, cid, status,	discount, qty);
+				int inv = rs.getInt(6);
+				String image = rs.getString(7);
+				Product p = new Product(pid, name, cid, status,	discount, inv ,image);
 				temp.add(p);
 			}
 		} catch (SQLException e) {
@@ -105,7 +123,33 @@ public class DBDisplay {
 		}
 		return temp;
 	}
-
+	
+	public Product displayOneProduct(int id) {
+		query="select * from "+table+" where id=?";		
+		Product temp = null ;
+		DBConnection ob = new DBConnection();
+		Connection con = ob.getCon();
+		try {
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int pid = rs.getInt(1);
+				String name = rs.getString(2);
+				int cid = rs.getInt(3);
+				boolean status = rs.getBoolean(4);
+				int discount = rs.getInt(5);
+				int inv = rs.getInt(6);
+				String image = rs.getString(7);
+				Product p = new Product(pid, name, cid, status,	discount, inv ,image);
+				temp = p;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return temp;
+	}
 	
 //	public ArrayList<Brand> displayAllCategory(String table) {
 //		String query="select * from "+table;		
