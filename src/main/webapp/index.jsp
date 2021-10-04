@@ -1,47 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Document</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <script defer src="assets/js/header.js"></script>
-</head>
-<body>
-    <div class="header">
-        <div class="header-links">        
-            <div class="nav">
-                <div class="icon">
-                    <div id="b-1" class="bar"></div>
-                    <div id="b-2" class="bar"></div>
-                    <div id="b-3" class="bar"></div>
+<%@ include file="/inc/header.jsp" %>
+       
+
+        <div class="banner">
+            <div class="row">
+                <div class="col-7">
+                    <div class="demo"></div>
                 </div>
-                <div class="nav-links">
-                    <div class="nav-link-first">
-                        <ol>
-                            <li id="xyz">catagory</li>
-                            <li>new&nbsp;arrivals</li>
-                            <li>about&nbsp;us</li>
-                        </ol>
-                        <div class="nav-links-second" id="category-links">
-                            <ol>
-                                <li>category1</li>
-                                <li>category2</li>
-                            </ol>
+            </div>
+        </div>
+        <%
+        	DBDisplay ob = new DBDisplay("product","where status=true");
+        	ArrayList<Product> result = ob.displayAllProduct();
+        %>
+        <div class="container">
+            <h1 class="title">products</h1>
+            <div class="row">
+            	<%
+            		for (int i =0;i<result.size();i++){
+            			Product p = result.get(i);
+            	%>
+                <div class="col-3">
+                    <div class="product">
+                        <div class="product-image bg-image" style="background-image: url(/ecom/product/file/<%=p.getImage()%>);"></div>
+                        <div class="contents">
+                            <h2><%=p.getName() %></h2>
+                            <h4>
+                            <%
+                            	if(p.getDiscount()!=0){
+                            		out.print("<span>Rs"+p.getPrice()+"</span>");
+                            		double priceafterdis =(double)(p.getPrice()-(p.getDiscount()/100.0*p.getPrice()));
+                            		out.print(" Rs "+priceafterdis);
+                            	}else{
+                            		out.print(" Rs "+p.getPrice());
+                            	}
+                            %>
+                            </h4>
+                            <h3 class="addtocart">add to cart</h3>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="logo">
-                <h1>xyz store</h1>
+                <%
+            		}
+                %>
             </div>
         </div>
-
-        <div class="other-headings">
-            <h2>offers</h2>
-        </div>
-        
-    </div>
-</body>
-</html>
+   <%@ include file="/inc/footer.jsp" %>

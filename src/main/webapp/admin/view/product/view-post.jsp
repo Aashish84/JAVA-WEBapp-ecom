@@ -5,6 +5,9 @@
 
 <%@ include file="/admin/inc/header.jsp" %>
 <%
+	if(request.getParameter("upderr")!=null){
+		out.println("<script>alert('update error')</script>");
+	}
 	DBDisplay ob = new DBDisplay("product");
 	ArrayList<Product> result = ob.displayAllProduct();	
 %>
@@ -17,6 +20,7 @@
 					<th class="p-1">name</th>
 					<th class="p-1">category</th>
 					<th class="p-1">status</th>
+					<th class="p-1">price</th>
 					<th class="p-1">discount</th>
 					<th class="p-1">remaningQty</th>
 					<th class="p-1">image</th>
@@ -46,6 +50,7 @@
 								}
 							%>	
 						</td>
+						<td><%=p.getPrice() %></td>
 						<td><%=p.getDiscount() %></td>
 						<td><%=p.getInventory() %></td>
 						<td><a class="btn btn-primary" href="/ecom/product/file/<%=p.getImage()%>" target="_blank">view image</a></td>	

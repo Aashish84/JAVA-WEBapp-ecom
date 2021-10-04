@@ -7,6 +7,9 @@
 			<%@ include file="/admin/inc/header.jsp" %>
 			
 <%
+	if(request.getParameter("val")!=null){
+		out.println("<script>alert('update error category exist in product')</script>");
+	}
 	DBDisplay ob = new DBDisplay("category");
 	ArrayList<Category> result = ob.displayAllCategory();
 %>
@@ -22,8 +25,9 @@
 						<th>status</th>
 						<th colspan="2">action</th>
 					</tr>
+					
 					<%
-						for(int i=0;i<result.size();i++){
+							for(int i=0;i<result.size();i++){
 							Category c = result.get(i);
 					%>
 					<tr>

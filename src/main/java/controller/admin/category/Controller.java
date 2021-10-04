@@ -2,6 +2,7 @@ package controller.admin.category;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 //import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import databaseservice.crud.DBDelete;
 import databaseservice.crud.DBDisplay;
 import databaseservice.crud.DBUpdatepost;
 import pojo.Category;
+import pojo.Product;
 
 @SuppressWarnings("serial")
 //@WebServlet("/category/ctrl/*")
@@ -57,32 +59,51 @@ public class Controller extends HttpServlet{
 	
 	protected void doPut(HttpServletRequest request , HttpServletResponse response)throws ServletException,IOException{
 		PrintWriter out = response.getWriter();
-		String i = (request.getPathInfo());
-		int id;
-		if(i.lastIndexOf("/")!=0) {
-			id  = Integer.parseInt(i.substring(1,i.indexOf("/",1)));
+		String ids = (request.getPathInfo());
+		int id = 0;
+		if(ids==null) {
+			response.sendRedirect("/ecom");
 		}else {
-			id  = Integer.parseInt(i.substring(1));
+			if(ids.lastIndexOf("/")!=0) {
+				id  = Integer.parseInt(ids.substring(1,ids.indexOf("/",1)));
+			}else {
+				id  = Integer.parseInt(ids.substring(1));
+			}
 		}
 		
-		String name = request.getParameter("newname");
-		String status = request.getParameter("newstatus");
-		if(name==null || status == null) {
-			response.sendRedirect("/ecom/category/update-post/"+id+"/");
-		}else {
-			Category c ;
-			if(status.equals("active")) {  
-				c = new Category(id,name,true);
+			String name = request.getParameter("newname");
+			
+			if(name==null) {
+				response.sendRedirect("/ecom/category/update-post/"+id+"/");
 			}else {
-				c = new Category(id,name,false);
+				boolean status;
+				if(request.getParameter("newstatus").equals("active")) {
+					status = true;
+				}else {
+					status = false;
+				}
+				
+				Category c = new Category(id,name,status);
+				
+				DBUpdatepost updateob = new DBUpdatepost(c);
+				if(updateob.updateReport()) {
+					//if category updated, checking if it is linked with product
+					//if category status is updated to notactive, changing all product status to not active linked with that category
+					DBDisplay obsearch = new DBDisplay("product","where category_id="+id);
+					if(!obsearch.isEmpty() && c.isStatus()==false) {
+						ArrayList<Product> result = obsearch.displayAllProduct();
+						for (int i = 0;i<result.size();i++) {
+							Product p = result.get(i);
+							p.setStatus(false);
+							p.setImage(null);
+							updateob = new DBUpdatepost(p);
+						}
+					}
+					response.sendRedirect("/ecom/category/view-post");
+				}else {
+					out.print("no update");
+				}
 			}
-			DBUpdatepost ob = new DBUpdatepost(c);
-			if(ob.updateReport()) {
-				response.sendRedirect("/ecom/category/view-post");
-			}else {
-				out.print("no update");
-			}
-		}
 	}
 	
 	protected void doDelete(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
@@ -108,8 +129,7 @@ public class Controller extends HttpServlet{
 				out.print("deleteion error");
 			}
 		}else {
-			out.println("category has product ");
-			response.sendRedirect("/ecom/category/view-post");
+			response.sendRedirect("/ecom/category/view-post?val=deleteerr");
 		}
 	}
 }

@@ -45,6 +45,7 @@ public class Controller extends HttpServlet {
 			}else {
 				status = false;
 			}
+			int price = Integer.parseInt(request.getParameter("price"));
 			int discount = Integer.parseInt(request.getParameter("discount"));
 			int inventory = Integer.parseInt(request.getParameter("inventory"));
 			
@@ -61,7 +62,7 @@ public class Controller extends HttpServlet {
 			if(extflag==false ||  productname.length()==0 ) {	
 				response.sendRedirect("/ecom/product/add-post");
 			}else {
-				Product p = new Product(productname,productcategory, status, discount, inventory, fn);
+				Product p = new Product(productname,productcategory, status,price, discount, inventory, fn);
 				DBAddpost ob = new DBAddpost(p);
 				if(ob.addReport()) {
 					filepart.write("D:\\5th sem\\java_ii\\project\\src\\main\\webapp\\files\\"+fn);
@@ -86,12 +87,12 @@ public class Controller extends HttpServlet {
 		}else {
 			id  = Integer.parseInt(ids.substring(1));
 		}
-//		form elements
-		String productname = request.getParameter("newproductname");
-		
-		if(productname==null) {
+
+		if(request.getParameter("newproductname")==null || request.getParameter("newproductcategory")==null) {
 			response.sendRedirect("/ecom/product/update-post/"+id);
 		}else {
+//			form elements
+			String productname = request.getParameter("newproductname");
 			int productcategory = Integer.parseInt(request.getParameter("newproductcategory"));
 			boolean status;
 			if(request.getParameter("newstatus").equals("active")) {
@@ -99,6 +100,8 @@ public class Controller extends HttpServlet {
 			}else {
 				status = false;
 			}
+						
+			int price = Integer.parseInt(request.getParameter("newprice"));
 			int discount = Integer.parseInt(request.getParameter("newdiscount"));
 			int inventory = Integer.parseInt(request.getParameter("newinventory"));
 			
@@ -117,14 +120,15 @@ public class Controller extends HttpServlet {
 					}
 				}
 				if(extflag==false ) {
-					response.sendRedirect("/ecom/product/view-post");
+					response.sendRedirect("/ecom/product/view-post?upderr=true");
 				}	
 			}
 			
-			Product p = new Product(id,productname,productcategory,status,discount,inventory,fn);
+			Product p = new Product(id,productname,productcategory,status,price,discount,inventory,fn);
 			DBUpdatepost ob = new DBUpdatepost(p);
 			if(ob.updateReport()) {
 				if(fn!=null) {
+					//writing file 
 					filepart.write("D:\\5th sem\\java_ii\\project\\src\\main\\webapp\\files\\"+fn);
 				}
 				response.sendRedirect("/ecom/product/view-post");

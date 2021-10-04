@@ -34,6 +34,12 @@
 			</div>
 			<div class="form-group">
 				<label>
+					price :
+					<input class="form-control" type="number"  name="price" />
+				</label>
+			</div>
+			<div class="form-group">
+				<label>
 					discount :
 					<input class="form-control" type="number"  name="discount" />
 				</label>

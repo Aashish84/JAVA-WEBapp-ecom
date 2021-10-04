@@ -1,0 +1,28 @@
+.title{
+    text-align: center;
+}
+.product-image{
+    width: 100%;
+    height: 250px;
+    /* background-color: aqua; */
+}
+.product h2,.product h4,.product h3{
+    font-family: "Poppins", Sans-serif;
+    margin: 0px;
+    text-transform: capitalize;
+}
+.product h2{
+    padding: 10px;
+    text-align: center;
+}
+.product h3{
+    margin: 10px 0px;
+    background-color: #393D46;
+    text-align: center;
+    color: aliceblue;
+    cursor: pointer;
+}
+.product h4>span{
+    text-decoration: line-through;
+    color: #c0c0c0;
+}

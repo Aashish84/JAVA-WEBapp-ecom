@@ -112,10 +112,11 @@ public class DBDisplay {
 				String name = rs.getString(2);
 				int cid = rs.getInt(3);
 				boolean status = rs.getBoolean(4);
-				int discount = rs.getInt(5);
-				int inv = rs.getInt(6);
-				String image = rs.getString(7);
-				Product p = new Product(pid, name, cid, status,	discount, inv ,image);
+				int price = rs.getInt(5);
+				int discount = rs.getInt(6);
+				int inv = rs.getInt(7);
+				String image = rs.getString(8);
+				Product p = new Product(pid, name, cid, status,	price,discount, inv ,image);
 				temp.add(p);
 			}
 		} catch (SQLException e) {
@@ -138,10 +139,11 @@ public class DBDisplay {
 				String name = rs.getString(2);
 				int cid = rs.getInt(3);
 				boolean status = rs.getBoolean(4);
-				int discount = rs.getInt(5);
-				int inv = rs.getInt(6);
-				String image = rs.getString(7);
-				Product p = new Product(pid, name, cid, status,	discount, inv ,image);
+				int price = rs.getInt(5);
+				int discount = rs.getInt(6);
+				int inv = rs.getInt(7);
+				String image = rs.getString(8);
+				Product p = new Product(pid, name, cid, status,price ,discount, inv ,image);
 				temp = p;
 			}
 		} catch (SQLException e) {

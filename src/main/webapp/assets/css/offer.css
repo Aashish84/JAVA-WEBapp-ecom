@@ -1,0 +1,28 @@
+.overlay{
+    width : 100vw;
+    height:100vh;
+    position:fixed;
+    background-color: #000000aa;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scaleY(0);
+    transition: 0.3s;
+}
+.container-offer{
+    width: 60%;
+    height :50vh;
+    margin: auto;
+    background-color: aqua;
+    transform: translateY(50%);
+}
+.only-x{
+    width: 100px;
+    height :100px;
+    position: fixed;
+    right: 0px;
+}
+.only-x>.icon{
+    background-color: #ffffff00;
+}

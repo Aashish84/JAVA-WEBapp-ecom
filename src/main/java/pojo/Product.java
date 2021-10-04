@@ -5,31 +5,42 @@ public class Product {
 	private String name;
 	private int category_id;
 	private boolean status;
+	private int price;
 	private int discount;
 	private int inventory;
 	private String image;
 	
 	public Product() {}
 
-	public Product(String name, int category_id, boolean status, int discount, int inventory, String image) {
+	public Product(String name, int category_id, boolean status,int price, int discount, int inventory, String image) {
 		super();
 		this.name = name;
 		this.category_id = category_id;
 		this.status = status;
+		this.price=price;
 		this.discount = discount;
 		this.inventory = inventory;
 		this.image = image;
 	}
 
-	public Product(int id, String name, int category_id, boolean status, int discount, int inventory, String image) {
+	public Product(int id, String name, int category_id, boolean status, int price,int discount, int inventory, String image) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.category_id = category_id;
 		this.status = status;
+		this.price=price;
 		this.discount = discount;
 		this.inventory = inventory;
 		this.image = image;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public int getId() {

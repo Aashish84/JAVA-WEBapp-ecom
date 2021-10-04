@@ -52,6 +52,13 @@
 			
 			<div class="form-group">
 				<label>
+					price :
+					<input class="form-control" type="number"  name="newprice" value="<%=p.getPrice()%>" />
+				</label>
+			</div>
+
+			<div class="form-group">
+				<label>
 					discount :
 					<input class="form-control" type="number"  name="newdiscount" value="<%=p.getDiscount()%>" />
 				</label>

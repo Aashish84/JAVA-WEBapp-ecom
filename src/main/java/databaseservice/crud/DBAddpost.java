@@ -24,7 +24,7 @@ public class DBAddpost {
 		}
 	}
 	public DBAddpost(Product p) {
-		String query = "insert into product (name,category_id,status,discount,inventory,image,created_at,updated_at) values(?,?,?,?,?,?,?,?)";
+		String query = "insert into product (name,category_id,status,price,discount,inventory,image,created_at,updated_at) values(?,?,?,?,?,?,?,?,?)";
 		DBConnection ob = new DBConnection();
 		Connection con = ob.getCon();
 		try {
@@ -32,11 +32,12 @@ public class DBAddpost {
 			pstmt.setString(1,p.getName());
 			pstmt.setInt(2, p.getCategory_id());
 			pstmt.setBoolean(3, p.isStatus());
-			pstmt.setInt(4, p.getDiscount());
-			pstmt.setInt(5, p.getInventory());
-			pstmt.setString(6, p.getImage());
-			pstmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+			pstmt.setInt(4, p.getPrice());
+			pstmt.setInt(5, p.getDiscount());
+			pstmt.setInt(6, p.getInventory());
+			pstmt.setString(7, p.getImage());
 			pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
+			pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis()));
 			i = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

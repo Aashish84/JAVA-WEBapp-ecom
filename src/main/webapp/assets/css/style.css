@@ -4,6 +4,12 @@
 body{
     margin: 0px;
 }
-.row{
-    display: flex;
+.wrapper{
+    max-width: 1920px;
+    margin:auto;
+}
+.bg-image{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
