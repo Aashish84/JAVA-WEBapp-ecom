@@ -10,12 +10,9 @@
     transform: scaleY(0);
     transition: 0.3s;
 }
-.container-offer{
-    width: 60%;
-    height :50vh;
+.container-cart{
+    width: 100%;
     margin: auto;
-    background-color: aqua;
-    transform: translateY(50%);
 }
 .only-x{
     width: 100px;
@@ -25,4 +22,17 @@
 }
 .only-x>.icon{
     background-color: #ffffff00;
+}
+.container-cart table{
+	border:1px solid black;
+	border-collapse:seperate;
+}
+.container-cart td,.container-cart th{
+	padding:5px 20px;
+	text-align:center;
+	font-family:"Poppins", Sans-serif;
+	text-transform:capitalize;
+}
+.container-cart thead{
+	border-bottom:1px solid black;
 }

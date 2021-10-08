@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="pojo.Product,pojo.Category,databaseservice.crud.DBDisplay"%>
+<%@ page import="pojo.Product,pojo.Category,databaseservice.crud.DBDisplay,controller.product.CartList"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Document</title>
     <link rel="stylesheet" href="/ecom/assets/css/style.css">
     <link rel="stylesheet" href="/ecom/assets/css/header.css">
-    <link rel="stylesheet" href="/ecom/assets/css/offer.css">
+    <link rel="stylesheet" href="/ecom/assets/css/cart.css">
     <link rel="stylesheet" href="/ecom/assets/css/banner.css">
     <link rel="stylesheet" href="/ecom/assets/css/grid.css">
     <link rel="stylesheet" href="/ecom/assets/css/product.css">
@@ -16,7 +16,7 @@
     <script defer src="/ecom/assets/js/cart.js"></script>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper"></div>
     	 <div class="header">
             <div class="header-link-section">        
                 <div class="nav">
@@ -57,18 +57,8 @@
 
             <div class="header-link-section">
                 <div class="other-section">
-                    <h2 id="cart">cart</h2>
+                    <a href="/ecom/cart"><h2 id="cart">cart</h2></a>
                 </div>
             </div>
             
-        </div>
-        <div class="overlay">
-            <div class="nav only-x" id="overlay-close">
-                <div class="icon">
-                    <div id="b-1" class="bar x"></div>
-                    <div id="b-2" class="bar y"></div>
-                </div>
-            </div>
-            <div class="container-offer">
-            </div>
         </div>

@@ -1,4 +1,4 @@
-package controller.admin.product;
+package controller.product;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

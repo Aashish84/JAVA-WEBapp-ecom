@@ -13,3 +13,9 @@ body{
     background-repeat: no-repeat;
     background-position: center;
 }
+.col-center{
+	justify-content:center;
+}
+.cross{
+	width:50px;
+}

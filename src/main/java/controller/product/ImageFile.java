@@ -1,4 +1,4 @@
-package controller.admin.product;
+package controller.product;
 
 import java.io.File;
 import java.io.FileInputStream;

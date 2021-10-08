@@ -26,11 +26,3 @@ document.getElementById("category-links").onmouseover = function(){
 document.getElementById("category-links").onmouseout = function(){
     document.getElementsByClassName("nav-links-second")[0].classList.remove("nav-toggle");
 }
-
-// offer overlay
-document.getElementById("cart").addEventListener("click",function(){
-    document.getElementsByClassName("overlay")[0].style.transform = "scaleY(1)";
-});
-document.getElementById("overlay-close").addEventListener("click",function(){
-    document.getElementsByClassName("overlay")[0].style.transform="scaleY(0)"
-});

@@ -36,19 +36,8 @@
                             	}
                             %>
                             </h4>
-                            <h3 class="addtocart" onclick="cartadd()">add to cart</h3>
-                            <script type="text/javascript">
-	                            function cartadd(){
-	                            	 xhr= new XMLHttpRequest();
-	                                    xhr.onreadystatechange = function (){
-	                                        if (this.readyState == 4 && this.status == 200){
-	                                        	alert("added");
-	                                        }
-	                                    };
-	                                    xhr.open('post',"/ecom/product/CartManager",true);
-	                                    xhr.send("productid="+<%=p.getId() %>);
-	                            }
-                            </script>
+                            <h3 class="addtocart" >add to cart</h3><span style="display:none"><%=p.getId() %></span>
+                         	
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-package controller.admin.category;
+package controller.category;
 
 import java.io.IOException;
 import java.io.PrintWriter;
