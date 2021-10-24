@@ -3,12 +3,14 @@ package pojo;
 public class ordereditem {
 	private int customer_id;
 	private int product_id;
+	private int quantity;
 	private boolean status;
 	//status 0 = processing , 1 = ordercomplete
-	public ordereditem(int customer_id, int product_id, boolean status) {
+	public ordereditem(int customer_id, int product_id,int quantity, boolean status) {
 		super();
 		this.customer_id = customer_id;
 		this.product_id = product_id;
+		this.quantity = quantity;
 		this.status = status;
 	}
 	public int getCustomer_id() {
@@ -22,6 +24,12 @@ public class ordereditem {
 	}
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	public boolean isStatus() {
 		return status;

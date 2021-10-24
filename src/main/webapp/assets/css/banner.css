@@ -3,6 +3,7 @@
     margin:0px auto;
     height: 500px;
     background-color: aquamarine;
+    display:none;
 }
 .demo{
     width: 100%;

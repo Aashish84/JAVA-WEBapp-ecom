@@ -35,7 +35,7 @@
                             	}
                             %>
                             </h4>
-                            <h3 class="addtocart">add to cart</h3>
+                            <h3 class="addtocart">add to cart</h3><span style="display:none"><%=p.getId() %></span>
                         </div>
                     </div>
                 </div>

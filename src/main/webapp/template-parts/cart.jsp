@@ -16,7 +16,10 @@
             		<tbody>
             		<%  
             			int count=0;
-            			for(int i[] : CartList.list){
+            			CartList ob = CartList.getInstance();
+            			ArrayList<int []> list = ob.getList();
+            			//System.out.println(list.size());
+            			for(int i[] : list){
             				DBDisplay obp = new DBDisplay("product");
             				Product p = obp.displayOneProduct(i[0]);
             				count ++;
@@ -59,7 +62,7 @@
             <hr/>
             <h2>checkout details</h2>
             <div class="consumer-detail">
-	            <form>
+	            <form action="customer/ctrl" method="post">
 	            	<table>
 	            		<tr>
 	            			<td>name<span style="color:red">*</span></td>

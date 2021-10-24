@@ -1,6 +1,6 @@
 package pojo;
 
-public class customer {
+public class Customer {
 	private int id;
 	private String name;
 	private double contact;
@@ -8,7 +8,7 @@ public class customer {
 	private String address;
 	private boolean status;
 	
-	public customer(int id, String name, double contact, String email, String address,boolean status) {
+	public Customer(int id, String name, double contact, String email, String address,boolean status) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -17,6 +17,16 @@ public class customer {
 		this.address=address;
 		this.status = status;
 	}
+	
+	public Customer(String name, double contact, String email, String address) {
+		super();
+		this.name = name;
+		this.contact = contact;
+		this.email = email;
+		this.address = address;
+		this.status = false;
+	}
+
 	public String getAddress() {
 		return address;
 	}

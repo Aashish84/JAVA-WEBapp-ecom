@@ -3,12 +3,24 @@ package controller.product;
 import java.util.ArrayList;
 
 public class CartList {
-	public static ArrayList<int[]> list = new ArrayList<int []>();
+	private static CartList single_instance = null;
+	public static CartList getInstance() {
+		if (single_instance == null) {
+			single_instance = new CartList();
+		}
+		
+		return single_instance;
+	}
+	private ArrayList<int[]> list;
+	private CartList(){
+		list = new ArrayList<>();
+	}
 	
 	public void cartListAdd(int id) {
 		int []xyz= {id,1};
 		//check if list is null
 		if(list == null) {
+			 //list = new ArrayList<int []>();
 			list.add(xyz);
 		}else {
 			//check if value present in list already
@@ -24,6 +36,15 @@ public class CartList {
 			}
 		}
 	}
+	
+	public ArrayList<int[]> getList() {
+		return list;
+	}
+
+	public void setList(ArrayList<int[]> list) {
+		this.list = list;
+	}
+	
 	public void display() {
 		for(int []i:list) {
 			System.out.println(i[0]+" "+i[1]);

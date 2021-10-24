@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import databaseservice.DBConnection;
 import pojo.Category;
+import pojo.Customer;
 import pojo.Product;
 
 public class DBDisplay {
@@ -150,6 +151,28 @@ public class DBDisplay {
 			e.printStackTrace();
 		}
 		
+		return temp;
+	}
+	
+
+	public ArrayList<Customer> displayAllCustomer(){
+		ArrayList<Customer> temp = new ArrayList<>();
+		ResultSet rs = displayAll();
+		System.out.println(this.query);
+		try {
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				String name = rs.getString(2);
+				double contact = rs.getDouble(3);
+				String email = rs.getString(4);
+				String address = rs.getString(5);
+				boolean status = rs.getBoolean(6);
+				Customer cs = new Customer(id, name, contact, email, address ,status);
+				temp.add(cs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return temp;
 	}
 	

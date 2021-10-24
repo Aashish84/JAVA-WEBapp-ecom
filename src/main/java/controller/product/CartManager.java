@@ -1,6 +1,7 @@
 package controller.product;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +31,7 @@ public class CartManager extends HttpServlet {
 					id  = Integer.parseInt(ids.substring(1));
 				}
 			}
-			CartList ob = new CartList();
+			CartList ob = CartList.getInstance();
 			ob.cartListAdd(id);
 		}
 	}
@@ -39,24 +40,32 @@ public class CartManager extends HttpServlet {
 		 Enumeration<String> enumeration = request.getParameterNames();
 		    while (enumeration.hasMoreElements()) {
 		        String parameterName = (String) enumeration.nextElement();
+		        
 		        if(!parameterName.equals("_method")) {
+		        	
 		        	//form name and value id as name quantity as value
 		        	int inputlist[] = {Integer.parseInt(parameterName) ,Integer.parseInt(request.getParameter(parameterName))}; 
 		        	
-		        	for(int i = 0 ; i<CartList.list.size();i++) {
-		        		int list[] = CartList.list.get(i);
+		        	CartList ob = CartList.getInstance();
+		        	ArrayList<int []> list =ob.getList();
+		        	
+		        	for(int i = 0 ; i<list.size();i++) {
+		        		
+		        		int item[] = list.get(i);
+		        		
 		        		//0 index has id of product 1 has quantity 
-		        		if(list[0]==inputlist[0] && inputlist[1]<=0) {
-		        			CartList.list.remove(i);
-		        		}else if(list[0]==inputlist[0]) {
-		        			CartList.list.set(i, inputlist);
+		        		//comparing int array item of arraylist and of user form input
+		        		
+		        		if(item[0]==inputlist[0] && inputlist[1]<=0) {
+		        			list.remove(i);
+		        		}else if(item[0]==inputlist[0]) {
+		        			list.set(i, inputlist);
 		        		}
 		        	}
 		        	
+		        	ob.setList(list);
 		        }
 		    }
-		    CartList ob = new CartList();
-		    ob.display();
 		    response.sendRedirect("/ecom/cart");
 	}
 }
