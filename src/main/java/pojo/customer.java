@@ -8,6 +8,10 @@ public class Customer {
 	private String address;
 	private boolean status;
 	
+	public Customer(int id) {
+		this.id = id;
+	}
+	
 	public Customer(int id, String name, double contact, String email, String address,boolean status) {
 		super();
 		this.id = id;

@@ -98,5 +98,4 @@ public class DBAddpost {
 	public boolean addReport() {
 		return i!=0;
 	}
-	
 }

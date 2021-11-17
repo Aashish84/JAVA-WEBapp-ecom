@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import databaseservice.DBConnection;
 import pojo.Category;
 import pojo.Customer;
+import pojo.Ordereditem;
 import pojo.Product;
 
 public class DBDisplay {
@@ -158,7 +159,6 @@ public class DBDisplay {
 	public ArrayList<Customer> displayAllCustomer(){
 		ArrayList<Customer> temp = new ArrayList<>();
 		ResultSet rs = displayAll();
-		System.out.println(this.query);
 		try {
 			while(rs.next()) {
 				int id = rs.getInt(1);
@@ -173,6 +173,32 @@ public class DBDisplay {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return temp;
+	}
+	
+	public ArrayList<Ordereditem> displayProductOfCustomer(Customer cs){
+		ArrayList<Ordereditem> temp = new ArrayList<>();
+		DBConnection conob = new DBConnection();
+		Connection con = conob.getCon();
+		
+		query = "select * from ordereditem where customer_id= ?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cs.getId());
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Ordereditem ob = new Ordereditem(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getInt(3),
+						rs.getBoolean(4)
+						);
+				temp.add(ob);
+			}
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		
 		return temp;
 	}
 	

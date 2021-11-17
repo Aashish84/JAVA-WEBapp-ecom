@@ -1,12 +1,12 @@
 package pojo;
 
-public class ordereditem {
+public class Ordereditem {
 	private int customer_id;
 	private int product_id;
 	private int quantity;
 	private boolean status;
 	//status 0 = processing , 1 = ordercomplete
-	public ordereditem(int customer_id, int product_id,int quantity, boolean status) {
+	public Ordereditem(int customer_id, int product_id,int quantity, boolean status) {
 		super();
 		this.customer_id = customer_id;
 		this.product_id = product_id;

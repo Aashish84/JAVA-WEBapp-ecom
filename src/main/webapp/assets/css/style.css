@@ -3,6 +3,7 @@
 }
 body{
     margin: 0px;
+    background-color:aliceblue;
 }
 .wrapper{
     max-width: 1920px;

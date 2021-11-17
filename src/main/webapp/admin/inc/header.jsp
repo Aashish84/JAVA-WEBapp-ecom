@@ -28,10 +28,16 @@
 				    	<a class="nav-link" href="/ecom/product/ctrl">product</a>
 				    </li>
 				   	<li class="nav-item">
-				    	<a class="nav-link" href="#">Link</a>
+				    	<a class="nav-link" href="/ecom/order/ctrl">new order</a>
+				   	</li>
+				   	<li class="nav-item">
+				    	<a class="nav-link" href="/ecom/order/view-post/completed_only">completed order</a>
+				   	</li>
+				   	<li class="nav-item">
+				    	<a class="nav-link" href="/ecom/order/view-post/all">all order</a>
 				   	</li>
 				    <li class="nav-item">
-				      <a class="nav-link disabled" href="#">Disabled</a>
+				      <a class="nav-link" href="/ecom/logout">Logout</a>
 				    </li>
  				</ul>
 				

@@ -2,11 +2,41 @@
     width:calc(100% - 200px);
     margin:0px auto;
     height: 500px;
-    background-color: aquamarine;
-    display:none;
+    background-color: #fff;
+    /* position: relative;
+    z-index: -1; */
 }
-.demo{
+.banner-tag{
+    /* position:absolute; */
+    display: inline-block;
+    margin:0px;
+    padding: 10px;
+    color:aliceblue;
+    background-color: #393d46;
+    text-transform: uppercase;
+}
+.banner-desc{
     width: 100%;
-    height: 500px;
-    background-color: antiquewhite;
+    height: 80%;
+}
+.banner-image{
+    width:100%;
+    height: 100%;
+}
+.banner-contents{
+    margin:50px 0px;
+}
+.banner-contents .title{
+    text-transform: capitalize;
+    margin:100px;
+}
+.banner-contents .price{
+    /* text-align: center; */
+    margin-top:50px;
+    font-size: 30px;
+}
+.banner-contents .purchase-btn{
+    padding:10px;
+    font-size: 30px;
+    display: inline-block;
 }

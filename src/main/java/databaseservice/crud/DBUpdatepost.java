@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 
 import databaseservice.DBConnection;
 import pojo.Category;
+import pojo.Customer;
 import pojo.Product;
 
 public class DBUpdatepost {
@@ -72,7 +73,31 @@ public class DBUpdatepost {
 			}
 		}
 	}
-	
+	public DBUpdatepost(Customer cs) {
+		if(cs.getId()!=0) {
+			String query = "update customer set status = ? where id = ?";
+			DBConnection ob = new DBConnection();
+			Connection con = ob.getCon();
+			try {
+				PreparedStatement pstmt = con.prepareStatement(query);
+				pstmt.setBoolean(1,true);
+				pstmt.setInt(2, cs.getId());
+				i =pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			query = "update ordereditem set status = ? where customer_id = ?";
+			try {
+				PreparedStatement pstmt = con.prepareStatement(query);
+				pstmt.setBoolean(1,true);
+				pstmt.setInt(2, cs.getId());
+				i =pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	public boolean updateReport() {
 		return i!=0 ;
 	}
