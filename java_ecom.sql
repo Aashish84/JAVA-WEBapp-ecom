@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2021 at 06:48 PM
+-- Generation Time: Nov 17, 2021 at 02:17 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -40,8 +40,61 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'category-1', 1, '2021-09-05 21:14:50', '2021-09-25 12:25:16'),
-(8, 'category-2', 1, '2021-09-20 13:25:57', '2021-09-27 07:59:19');
+(10, 'laptops', 1, '2021-09-29 20:08:38', '2021-11-14 14:03:40'),
+(11, 'category2', 1, '2021-10-04 13:16:34', '2021-10-04 13:53:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `contact` double NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` double NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `contact`, `email`, `address`, `status`, `created_at`, `updated_at`) VALUES
+(46, 'a', 1, 'aaa@aa.aa', 'a', 1, 1635000089368, '2021-10-23 20:26:29'),
+(47, 'b', 2, 'bb@bb.bb', 'b', 1, 1635000128380, '2021-10-23 20:27:08'),
+(48, 'x', 123, '123@12.21', '1231', 0, 1636860916233, '2021-11-14 09:20:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ordereditem`
+--
+
+CREATE TABLE `ordereditem` (
+  `customer_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ordereditem`
+--
+
+INSERT INTO `ordereditem` (`customer_id`, `product_id`, `quantity`, `status`, `created_at`, `updated_at`) VALUES
+(46, 5, 1, 1, '2021-10-23 20:26:29', '2021-10-23 20:26:29'),
+(46, 6, 1, 1, '2021-10-23 20:26:29', '2021-10-23 20:26:29'),
+(47, 6, 10, 1, '2021-10-23 20:27:08', '2021-10-23 20:27:08'),
+(47, 7, 11, 1, '2021-10-23 20:27:08', '2021-10-23 20:27:08'),
+(47, 5, 12, 1, '2021-10-23 20:27:08', '2021-10-23 20:27:08'),
+(48, 6, 1, 0, '2021-11-14 09:20:16', '2021-11-14 09:20:16');
 
 -- --------------------------------------------------------
 
@@ -54,8 +107,10 @@ CREATE TABLE `product` (
   `name` varchar(100) NOT NULL,
   `category_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
+  `price` int(11) NOT NULL,
   `discount` int(11) NOT NULL,
   `inventory` int(11) NOT NULL,
+  `image` varchar(500) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -64,8 +119,11 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `category_id`, `status`, `discount`, `inventory`, `created_at`, `updated_at`) VALUES
-(1, 'one', 8, 1, 0, 2, '2021-09-24 10:11:46', '2021-09-24 10:11:46');
+INSERT INTO `product` (`id`, `name`, `category_id`, `status`, `price`, `discount`, `inventory`, `image`, `created_at`, `updated_at`) VALUES
+(5, 'Acer Aspire 5', 10, 1, 75500, 10, 10, 'aceraspire5.jpg', '2021-09-29 20:09:23', '2021-11-14 14:05:27'),
+(6, 'lenovo ideapad 3', 10, 1, 78999, 0, 10, 'lenovoideapad3.jpg', '2021-10-04 18:20:18', '2021-11-14 14:07:10'),
+(7, 'dell 3500 i5', 10, 1, 80000, 2, 20, 'dell3500.jpg', '2021-10-08 12:12:05', '2021-11-14 14:08:47'),
+(8, 'asus vivobook', 10, 1, 75990, 10, 10, 'asusvivobook.jpg', '2021-11-14 14:11:01', '2021-11-14 14:11:01');
 
 -- --------------------------------------------------------
 
@@ -122,6 +180,19 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ordereditem`
+--
+ALTER TABLE `ordereditem`
+  ADD KEY `customer id` (`customer_id`),
+  ADD KEY `product id` (`product_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -148,13 +219,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -165,6 +242,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `ordereditem`
+--
+ALTER TABLE `ordereditem`
+  ADD CONSTRAINT `product id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 
 --
 -- Constraints for table `product`
